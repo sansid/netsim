@@ -50,14 +50,14 @@ TcpSocket::GetTypeId (void)
     .AddAttribute ("SndBufSize",
                    "TcpSocket maximum transmit buffer size (bytes)",
                    //UintegerValue (131072), // 128k
-                   UintegerValue (350000), // 128k
+                   UintegerValue (250000*8), // 128k
                    MakeUintegerAccessor (&TcpSocket::GetSndBufSize,
                                          &TcpSocket::SetSndBufSize),
                    MakeUintegerChecker<uint32_t> ())
     .AddAttribute ("RcvBufSize",
                    "TcpSocket maximum receive buffer size (bytes)",
                    //UintegerValue (131072),
-                   UintegerValue (350000),
+                   UintegerValue (250000*8),
                    MakeUintegerAccessor (&TcpSocket::GetRcvBufSize,
                                          &TcpSocket::SetRcvBufSize),
                    MakeUintegerChecker<uint32_t> ())

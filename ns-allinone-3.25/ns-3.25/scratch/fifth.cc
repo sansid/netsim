@@ -179,7 +179,7 @@ main (int argc, char *argv[])
   nodes.Create (2);
 
   PointToPointHelper pointToPoint;
-  pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("20Mbps"));
+  pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("25Mbps"));
   pointToPoint.SetChannelAttribute ("Delay", StringValue ("100ms"));
 
   NetDeviceContainer devices;
@@ -206,11 +206,12 @@ main (int argc, char *argv[])
   Ptr<Socket> ns3TcpSocket = Socket::CreateSocket (nodes.Get (0), TcpSocketFactory::GetTypeId ());
   ns3TcpSocket->TraceConnectWithoutContext ("CongestionWindow", MakeCallback (&CwndChange));
   //Config::SetDefault("ns3::TcpSocket::RcvBufSize", UintegerValue (524288));
-  Config::SetDefault("ns3::TcpSocket::RcvBufSize", UintegerValue (724288));
+  Config::SetDefault("ns3::TcpSocket::RcvBufSize", UintegerValue (800000));
+  //Config::SetDefault ("ns3::DropTailQueue::MaxPackets", UintegerValue(uint32_t(100000)));
 
   //Config::SetDefault("ns3::TcpSocket::WindowScaling", BooleanValue(true));
   Ptr<MyApp> app = CreateObject<MyApp> ();
-  app->Setup (ns3TcpSocket, sinkAddress, 1460, 80000, DataRate ("20Mbps"));
+  app->Setup (ns3TcpSocket, sinkAddress, 1460, 90000, DataRate ("30Mbps"));
   nodes.Get (0)->AddApplication (app);
   app->SetStartTime (Seconds (1.));
   app->SetStopTime (Seconds (40.));
@@ -221,7 +222,7 @@ main (int argc, char *argv[])
   pointToPoint.EnableAsciiAll (ascii.CreateFileStream ("tcp-example.tr"));
   pointToPoint.EnablePcapAll ("tcp-example");
 
-  Simulator::Stop (Seconds (80));
+  Simulator::Stop (Seconds (20));
   Simulator::Run ();
   Simulator::Destroy ();
 

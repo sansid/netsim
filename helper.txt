@@ -1,0 +1,1 @@
+cat tcp-example.tr | grep ^r | grep "size=" | awk '{split($38,a,"="); split(a[2],b,")"); if(b[1]) print $2,b[1]}'
