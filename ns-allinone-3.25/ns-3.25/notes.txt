@@ -1,0 +1,32 @@
+sansid@sansid-Inspiron-1420:~/latest/workspace/ns-allinone-3.25/ns-3.25$ ./waf --command-template="gdb %s" --run "scratch/red_two_node"
+Waf: Entering directory `/home/sansid/latest/workspace/ns-allinone-3.25/ns-3.25/build'
+Waf: Leaving directory `/home/sansid/latest/workspace/ns-allinone-3.25/ns-3.25/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (8.808s)
+GNU gdb (Ubuntu 7.11.1-0ubuntu1~16.04) 7.11.1
+Copyright (C) 2016 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from /home/sansid/latest/workspace/ns-allinone-3.25/ns-3.25/build/scratch/red_two_node...done.
+(gdb) r
+Starting program: /home/sansid/latest/workspace/ns-allinone-3.25/ns-3.25/build/scratch/red_two_node 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007fffefeaaf74 in ns3::Queue::Enqueue (this=0x0, item=...) at ../src/network/utils/queue.cc:102
+102	  if (m_mode == QUEUE_MODE_PACKETS && (m_nPackets.Get () >= m_maxPackets))
+(gdb) 
+
+
+******************************************************************************
